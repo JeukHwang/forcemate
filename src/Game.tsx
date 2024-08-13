@@ -1,5 +1,5 @@
 import { Move, PieceType, ShortMove, Square } from "chess.js";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Piece } from "react-chessboard/dist/chessboard/types";
 import "./Game.css";
@@ -8,6 +8,20 @@ import { Chess, SQUARES } from "./lib/chess.js@0.13.4/chess.js";
 
 const DEBUG = false;
 const TIMEOUT = 200;
+const pieces = [
+  "wP",
+  "wN",
+  "wB",
+  "wR",
+  "wQ",
+  "wK",
+  "bP",
+  "bN",
+  "bB",
+  "bR",
+  "bQ",
+  "bK",
+];
 
 function Modal({
   visible,
@@ -223,6 +237,26 @@ export default function Game() {
     [status, legalThisSquares, selectSquare]
   );
 
+  const customPieces = useMemo(() => {
+    const pieceComponents: Record<
+      string,
+      ({ squareWidth }: { squareWidth: string }) => ReactNode
+    > = {};
+    pieces.forEach((piece: string) => {
+      pieceComponents[piece] = ({ squareWidth }: { squareWidth: string }) => (
+        <div
+          style={{
+            width: squareWidth,
+            height: squareWidth,
+            backgroundImage: `url(/pieces/${piece.toLowerCase()}.png)`,
+            backgroundSize: "100%",
+          }}
+        />
+      );
+    });
+    return pieceComponents;
+  }, []);
+
   return (
     <div
       style={{
@@ -253,6 +287,17 @@ export default function Game() {
           position={game.fen()}
           onPieceDrop={onDrop}
           onSquareClick={onSquareClick}
+          customBoardStyle={{
+            borderRadius: "4px",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
+          }}
+          customDarkSquareStyle={{
+            backgroundColor: "#779952",
+          }}
+          customLightSquareStyle={{
+            backgroundColor: "#edeed1",
+          }}
+          customPieces={customPieces}
           customSquareStyles={{
             [selectedSquare as string]: {
               backgroundColor: "rgba(255, 255, 0, 0.5)",

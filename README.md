@@ -34,3 +34,4 @@ Contact me through `jeukhwang.dev(at)gmail(dot)com` or [GitHub Issue](https://gi
 - [chess.js](https://github.com/jhlywa/chess.js) as a logic provider
 - [react-chessboard](https://github.com/Clariity/react-chessboard) as a visualizer
 - [tossface](https://toss.im/tossface) as a font, favicon
+- [chess.com](https://chess.com) for icons of pieces
