@@ -21,7 +21,7 @@ Have fun!
 
 | Date       | Version | Description                   |
 | ---------- | ------- | ----------------------------- |
-| 2024-08-13 | v1.0    | First version with basic rule |
+| 2024-08-13 | v1.0.0  | First version with basic rule |
 
 ## Contribution
 

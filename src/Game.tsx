@@ -363,7 +363,7 @@ export default function Game() {
         </h2>
         <br />
         <div>
-          <p>2024-08-13 - v1.0</p>
+          <p>2024-08-13 - v1.0.0</p>
           <p>First version with basic rule</p>
         </div>
       </Modal>
