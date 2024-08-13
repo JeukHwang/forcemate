@@ -1,9 +1,9 @@
-import Forcemate from "./forcemate";
+import Game from "./Game";
 
 function App() {
   return (
     <>
-      <Forcemate />
+      <Game />
     </>
   );
 }

@@ -2,13 +2,53 @@ import { Move, PieceType, ShortMove, Square } from "chess.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Chessboard } from "react-chessboard";
 import { Piece } from "react-chessboard/dist/chessboard/types";
+import "./Game.css";
 /** @ts-expect-error : import chess.js manually since I need to modifiy it */
 import { Chess, SQUARES } from "./lib/chess.js@0.13.4/chess.js";
 
 const DEBUG = false;
 const TIMEOUT = 200;
 
-export default function Forcemate() {
+function Modal({
+  visible,
+  setInvisible,
+  children,
+}: {
+  visible: boolean;
+  setInvisible: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    visible && (
+      <div
+        onClick={setInvisible}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          lineHeight: 1.6,
+        }}
+      >
+        <div
+          className="board-size"
+          style={{ boxSizing: "border-box", padding: "8px" }}
+        >
+          {children}
+        </div>
+      </div>
+    )
+  );
+}
+
+export default function Game() {
   const [game, setGame] = useState(new Chess());
   const [status, setStatus] = useState<
     | "selectA"
@@ -194,7 +234,7 @@ export default function Forcemate() {
         justifyContent: "center",
       }}
     >
-      <div style={{ width: "calc(min(100vw, 100vh)*0.7)" }}>
+      <div className="board-size">
         <div
           style={{
             display: "flex",
@@ -264,89 +304,93 @@ export default function Forcemate() {
               Bug or new idea?
             </span>
           </div>
-          <div>Made with ❤️ for ♟️</div>
+          <div>
+            Made with <span className="tossface">❤️</span> for{" "}
+            <span className="tossface">♟️</span>
+          </div>
         </div>
       </div>
-      {showModal === "rule" && (
-        <div
-          onClick={() => setShowModal(null)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            color: "white",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+      <Modal
+        visible={showModal === "rule"}
+        setInvisible={() => setShowModal(null)}
+      >
+        <h3>
+          <b>ForceMate, a chess variant for the deep thinkers</b>
+        </h3>
+        <h2>
+          <b>Rule</b>
+        </h2>
+        <br />
+        <div>
           <p>
-            In <b>normal</b> chess, <i>you</i> choose a piece and move it.
+            In <b>normal</b> chess,{" "}
+            <i>
+              <b>you</b>
+            </i>{" "}
+            choose a piece and move it.
           </p>
+          <p>But... what if you could choose the pieces your rival moves?</p>
           <p>
-            In <b>ForceMate</b>, <i>your opponent </i> chooses a piece and you
-            move it and vice versa.
+            In <b>ForceMate</b>,{" "}
+            <i>
+              <b>your rival</b>
+            </i>{" "}
+            chooses a piece for you to move, and vice versa.
           </p>
           <br />
-          <p>If all your pieces check, you win.</p>
-          <p>If no legal move left, you draw.</p>
+          <p>If all your pieces check after your rival's turn, you win.</p>
+          <p>
+            It's because the rival king is doomed no matter what piece your
+            rival chooses.
+          </p>
+          <p>
+            If either player has no legal moves left, the game ends in a
+            stalemate.
+          </p>
           <br />
-          <p>Have a fun!</p>
+          <p>Have fun!</p>
         </div>
-      )}
-      {showModal === "patch" && (
-        <div
-          onClick={() => setShowModal(null)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            color: "white",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <p>
-            <b>Patch Note</b>
-          </p>
-          <br />
-          <p>
-            <b>2024-08-13</b> - v1.0
-          </p>
+      </Modal>
+      <Modal
+        visible={showModal === "patch"}
+        setInvisible={() => setShowModal(null)}
+      >
+        <h3>
+          <b>ForceMate, a chess variant for the deep thinkers</b>
+        </h3>
+        <h2>
+          <b>Patch Note</b>
+        </h2>
+        <br />
+        <div>
+          <p>2024-08-13 - v1.0</p>
           <p>First version with basic rule</p>
         </div>
-      )}
-      {showModal === "contact" && (
-        <div
-          onClick={() => setShowModal(null)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            color: "white",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <p>To report bug or share ideas, please contact me</p>
-          <br />
-          <p>jeukhwang.dev (here goes at) gmail (here goes dot) com</p>
+      </Modal>
+      <Modal
+        visible={showModal === "contact"}
+        setInvisible={() => setShowModal(null)}
+      >
+        <h3>
+          <b>ForceMate, a chess variant for the deep thinkers</b>
+        </h3>
+        <h2>
+          <b>Contact</b>
+        </h2>
+        <br />
+        <div>
+          <p>Welcome all bug reports and idea sharing</p>
+          Contact me through <code>jeukhwang.dev(at)gmail(dot)com</code> or{" "}
+          <a
+            className="github-issue"
+            href="https://github.com/JeukHwang/forcemate/issues/new"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub Issue
+          </a>
         </div>
-      )}
+      </Modal>
     </div>
   );
 }

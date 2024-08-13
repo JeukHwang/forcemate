@@ -1,0 +1,13 @@
+.board-size {
+  width: calc(min(100vw, 100vh) * 0.7);
+}
+
+@media screen and (max-width: 600px) {
+  .board-size {
+    width: calc(min(100vw, 100vh) * 0.9);
+  }
+}
+
+a.github-issue:visited {
+  color: inherit;
+}
