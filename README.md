@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+# ForceMate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> ## A chess variant for the deep thinkers
 
-Currently, two official plugins are available:
+![ForceMate Screenshot](./docs/screenshot.jpg)
+Play at https://forcemate.jeuk.io
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Rule
 
-## Expanding the ESLint configuration
+In **normal** chess, _**you**_ choose a piece and move it.  
+But... what if you could choose the pieces your rival moves?  
+In **ForceMate**, _**your rival**_ chooses a piece for you to move, and vice versa.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+If all your pieces check after your rival's turn, you win.  
+It's because the rival king is doomed no matter what piece your rival chooses.  
+If either player has no legal moves left, the game ends in a stalemate.
 
-- Configure the top-level `parserOptions` property like this:
+Have fun!
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Patch note
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+| Date       | Version | Description                   |
+| ---------- | ------- | ----------------------------- |
+| 2024-08-13 | v1.0    | First version with basic rule |
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Contribution
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Welcome all bug reports and idea sharing.
+
+Contact me through `jeukhwang.dev(at)gmail(dot)com` or [GitHub Issue](https://github.com/JeukHwang/forcemate/issues/new).
+
+## Licenses and Attributions
+
+- [chess.js](https://github.com/jhlywa/chess.js) as a logic provider
+- [react-chessboard](https://github.com/Clariity/react-chessboard) as a visualizer
+- [tossface](https://toss.im/tossface) as a font, favicon
