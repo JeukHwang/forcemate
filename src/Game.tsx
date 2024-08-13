@@ -270,8 +270,10 @@ export default function Game() {
           }}
         >
           <div style={{ margin: "auto" }}>
-            {status === "moveA" ? "Move highlighted your piece" : null}
-            {status === "selectB" ? "Select one of opponent's piece" : null}
+            {status === "moveA" ? "Move your highlighted piece" : null}
+            {status === "selectB"
+              ? "Select one of your opponent's pieces"
+              : null}
           </div>
         </div>
         <div
