@@ -23,6 +23,14 @@ Have fun!
 | ---------- | ------- | ----------------------------- |
 | 2024-08-13 | v1.0.0  | First version with basic rule |
 
+### Future roadmap
+
+I'm not sure when it will be, but the more interest, the sooner I'll start
+
+- Implementing modals instead of default notifications
+- Reset, undo buttons
+- Stockfish-based AI Opponents
+
 ## Contribution
 
 Welcome all bug reports and idea sharing.
