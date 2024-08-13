@@ -28,7 +28,7 @@
 const SYMBOLS = 'pnbrqkPNBRQK'
 
 const DEFAULT_POSITION =
-  'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+  'rnbqkbnr/p1pppp1p/8/8/8/8/P1PPPP1P/RNBQKBNR w KQkq - 0 1' /** Prevent rooks from being trapped and selected repeatedly */
 
 const TERMINATION_MARKERS = ['1-0', '0-1', '1/2-1/2', '*']
 
