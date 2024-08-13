@@ -921,15 +921,18 @@ export const Chess = function (fen) {
   }
 
   function king_attacked(color) {
-    return attacked(swap_color(color), kings[color])
+    return false;
+    // return attacked(swap_color(color), kings[color])
   }
 
   function in_check() {
-    return king_attacked(turn)
+    return false;
+    // return king_attacked(turn)
   }
 
   function in_checkmate() {
-    return in_check() && generate_moves().length === 0
+    return false;
+    // return in_check() && generate_moves().length === 0
   }
 
   function in_stalemate() {
